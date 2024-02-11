@@ -17,6 +17,7 @@ allprojects {
     }
 }
 
+
 def getVersionName = { ->
     try {
         def stdout = new ByteArrayOutputStream()
@@ -85,7 +86,9 @@ android {
             }
         }
     }
-
+plugins {
+  id "org.sonarqube" version "4.4.1.3373"
+}
     namespace 'de.dennisguse.opentracks'
 
     buildTypes {
