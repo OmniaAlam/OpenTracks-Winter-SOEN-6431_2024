@@ -182,7 +182,7 @@ public class TrackRecordingService extends Service implements TrackPointCreator.
         }
         Log.i(TAG, "resumeTrack");
 
-        updateRecordingStatus(RecordingStatus.record(trackId));
+        updateRecordingStatus(RecordingStatus.recordCreate(trackId));
 
         startRecording();
     }
