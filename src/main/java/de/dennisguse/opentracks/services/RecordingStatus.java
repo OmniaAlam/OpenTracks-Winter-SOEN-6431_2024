@@ -7,7 +7,7 @@ import de.dennisguse.opentracks.data.models.Track;
 
 public record RecordingStatus(@Nullable Track.Id trackId) {
 
-    static RecordingStatus recordCreate1(@NonNull Track.Id trackId) {
+    static RecordingStatus recordCreate1(Track.Id trackId) {
         return new RecordingStatus(trackId);
     }
 
