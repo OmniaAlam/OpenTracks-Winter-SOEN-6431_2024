@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
+import de.dennisguse.opentracks.CalendarActivity;
 import de.dennisguse.opentracks.R;
 import de.dennisguse.opentracks.data.models.ActivityType;
 import de.dennisguse.opentracks.data.models.DistanceFormatter;
@@ -91,6 +92,23 @@ public class AggregatedStatisticsAdapter extends RecyclerView.Adapter<RecyclerVi
                     context.startActivity(intent);
                 }
             });
+
+            viewBinding.runsAndLiftsButton.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View v){
+                    Intent intent=new Intent(v.getContext(), CalendarActivity.class);
+                    intent.putExtra("Display Fields", "Runs and Lifts");
+                    v.getContext().startActivity(intent);
+                }
+            });
+            viewBinding.elevationAndSpeedButton.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View v){
+                    Intent intent=new Intent(v.getContext(), CalendarActivity.class);
+                    intent.putExtra("Display Fields", "Elevation and Speed");
+                    v.getContext().startActivity(intent);
+                }
+            });
         }
 
         public void setSpeed(AggregatedStatistics.AggregatedStatistic aggregatedStatistic) {
@@ -149,6 +167,22 @@ public class AggregatedStatisticsAdapter extends RecyclerView.Adapter<RecyclerVi
             viewBinding.aggregatedStatsDistanceUnit.setText(parts.second);
 
             viewBinding.aggregatedStatsTime.setText(StringUtils.formatElapsedTime(aggregatedStatistic.getTrackStatistics().getMovingTime()));
+
+
+            if (activityType.equals("skiing")){
+                viewBinding.aggregatedStatsSlopePercentLabel.setVisibility(View.VISIBLE);
+                viewBinding.aggregatedStatsSlopePercent.setVisibility(View.VISIBLE);
+                viewBinding.aggregatedStatsSlopePercentUnit.setVisibility(View.VISIBLE);
+
+                if (aggregatedStatistic.getTrackStatistics().getSlopePercent() == null) {
+                    viewBinding.aggregatedStatsSlopePercent.setText("0");
+                } else {
+                    viewBinding.aggregatedStatsSlopePercent.setText(String.valueOf(aggregatedStatistic.getTrackStatistics().getSlopePercent()));
+                }
+                viewBinding.aggregatedStatsSlopePercentLabel.setText("Average Slope %");
+                viewBinding.aggregatedStatsSlopePercentUnit.setText("%");
+            }
+
         }
 
         private int getIcon(AggregatedStatistics.AggregatedStatistic aggregatedStatistic) {

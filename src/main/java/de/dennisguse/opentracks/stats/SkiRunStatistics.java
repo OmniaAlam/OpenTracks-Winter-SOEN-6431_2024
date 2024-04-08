@@ -14,9 +14,9 @@ public class SkiRunStatistics {
     private List<TrackPoint> trackPoints;
 
     // Constructor
-     public SkiRunStatistics(String name, List<TrackPoint> trackPoints) {
+    public SkiRunStatistics(String name, List<TrackPoint> trackPoints) {
 
-         this.name = name;
+        this.name = name;
         this.trackPoints = trackPoints;
     }
 
@@ -135,7 +135,7 @@ public class SkiRunStatistics {
             // Duration too short, probably not skiing
             return false;
         }
-      // User is likely skiing
+        // User is likely skiing
         return true;
     }
 
